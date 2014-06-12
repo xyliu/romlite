@@ -74,11 +74,17 @@ clean_up()
 create_simage_from_fs()
 {
 	cd $TOP/working
-	../tools/make_ext4fs -l 2G -s -a system new.img /mnt/img/
+	../tools/make_ext4fs -l 2G -s -a system system.img /mnt/img/
 	cd $TOP
 	sudo umount /mnt/img
 }
 
+create_tar_md5_file()
+{
+	tar -c boot.img cache.img hidden.img modem.bin recovery.img system.img >> new.tar 
+	md5sum -t new.tar >> new.tar
+	mv new.tar new.tar.md5
+}
 unzip_img
 prepare_working_fs
 remove_bloatware
