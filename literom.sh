@@ -82,7 +82,7 @@ create_simage_from_fs()
 create_tar_md5_file()
 {
 	cd $TOP/working
-	tar -c boot.img cache.img hidden.img modem.bin recovery.img system.img >> new.tar 
+	tar -c system.img >> new.tar 
 	md5sum -t new.tar >> new.tar
 	mv new.tar new.tar.md5
 }
